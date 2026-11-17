@@ -10,8 +10,8 @@ public class CreateUserDto
     public string Login { get; set; } = null!;
 
     [Required]
-    [StringLength(256, MinimumLength = 1)]
-    public string PasswordHash { get; set; } = null!;
+    [StringLength(128, MinimumLength = 8)]
+    public string Password { get; set; } = null!;
 
     [Range(1, int.MaxValue)]
     public int RoleId { get; set; }

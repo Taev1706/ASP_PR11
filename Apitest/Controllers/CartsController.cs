@@ -1,3 +1,5 @@
+using Apitest.Common;
+using Microsoft.AspNetCore.Authorization;
 using System.Globalization;
 using Apitest.Dtos;
 using Apitest.Services;
@@ -6,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Apitest.Controllers;
 
 [ApiController]
+[Authorize(Policy = AccessRules.AdminOnly)]
 [Route("api/carts")]
 public class CartsController(ICartService service) : ControllerBase
 {

@@ -1,3 +1,5 @@
+using Apitest.Common;
+using Microsoft.AspNetCore.Authorization;
 using System.Globalization;
 using Apitest.Dtos;
 using Apitest.Services;
@@ -21,6 +23,7 @@ public class CategoriesController(ICategoryService service) : ControllerBase
     public async Task<ActionResult<CategoryDto>> GetById(int id, CancellationToken ct) =>
         Ok(await service.GetByIdAsync(id, ct));
 
+    [Authorize(Policy = AccessRules.AdminOnly)]
     [HttpPost]
     public async Task<ActionResult<CategoryDto>> Create(CreateCategoryDto dto, CancellationToken ct)
     {
@@ -28,6 +31,7 @@ public class CategoriesController(ICategoryService service) : ControllerBase
         return CreatedAtAction(nameof(GetById), new { id = created.CategoryId }, created);
     }
 
+    [Authorize(Policy = AccessRules.AdminOnly)]
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(int id, UpdateCategoryDto dto, CancellationToken ct)
     {
@@ -35,6 +39,7 @@ public class CategoriesController(ICategoryService service) : ControllerBase
         return NoContent();
     }
 
+    [Authorize(Policy = AccessRules.AdminOnly)]
     [HttpPatch("{id:int}")]
     public async Task<IActionResult> Patch(int id, PatchCategoryDto dto, CancellationToken ct)
     {
@@ -42,6 +47,7 @@ public class CategoriesController(ICategoryService service) : ControllerBase
         return NoContent();
     }
 
+    [Authorize(Policy = AccessRules.AdminOnly)]
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id, CancellationToken ct)
     {

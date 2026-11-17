@@ -3,3 +3,7 @@
 **/obj/
 *.user
 *.suo
+
+Apitest.Client/node_modules/
+Apitest.Client/dist/
+Apitest.Client/.env.local

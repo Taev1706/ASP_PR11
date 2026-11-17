@@ -12,8 +12,8 @@ public class UpdateUserDto
 
     [JsonRequired]
     [Required]
-    [StringLength(256, MinimumLength = 1)]
-    public string PasswordHash { get; set; } = null!;
+    [StringLength(128, MinimumLength = 8)]
+    public string Password { get; set; } = null!;
 
     [JsonRequired]
     [Range(1, int.MaxValue)]

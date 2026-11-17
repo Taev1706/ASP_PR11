@@ -47,24 +47,26 @@ public class MappingProfile : Profile
         CreateMap<User, UserSummaryDto>();
 
         CreateMap<CreateUserDto, User>()
+            .ForMember(d => d.PasswordHash, o => o.Ignore())
             .ForMember(d => d.UserId, o => o.Ignore())
             .ForMember(d => d.Cart, o => o.Ignore())
             .ForMember(d => d.Orders, o => o.Ignore())
             .ForMember(d => d.Role, o => o.Ignore());
 
         CreateMap<UpdateUserDto, User>()
+            .ForMember(d => d.PasswordHash, o => o.Ignore())
             .ForMember(d => d.UserId, o => o.Ignore())
             .ForMember(d => d.Cart, o => o.Ignore())
             .ForMember(d => d.Orders, o => o.Ignore())
             .ForMember(d => d.Role, o => o.Ignore());
 
         CreateMap<PatchUserDto, User>()
+            .ForMember(d => d.PasswordHash, o => o.Ignore())
             .ForMember(d => d.UserId, o => o.Ignore())
             .ForMember(d => d.Cart, o => o.Ignore())
             .ForMember(d => d.Orders, o => o.Ignore())
             .ForMember(d => d.Role, o => o.Ignore())
             .ForMember(d => d.Login, o => o.PreCondition(s => s.Login != null))
-            .ForMember(d => d.PasswordHash, o => o.PreCondition(s => s.PasswordHash != null))
             .ForMember(d => d.RoleId, o => o.PreCondition(s => s.RoleId != null))
             .ForMember(d => d.UserName, o => o.PreCondition(s => s.UserName != null))
             .ForMember(d => d.IsActive, o => o.PreCondition(s => s.IsActive != null));
